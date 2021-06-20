@@ -107,7 +107,6 @@
                             if (score == brickRowCount * brickColumnCount) {
                                 alert("YOU WIN, CONGRATULATIONS!");
                                 document.location.reload();
-                                clearInterval(interval); // Needed for Chrome to end game
                             }
                         }
                     }
@@ -169,14 +168,10 @@
             collisionDetection();
             drawScore();
             drawLives();
-
-
-
-
+            
             if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
                 dx = -dx;
             }
-
             if (y + dy < ballRadius) {
                 dy = -dy;
             } else if (y + dy > canvas.height - ballRadius) {
@@ -195,7 +190,6 @@
                         dy = -2;
                         paddleX = (canvas.width - paddleWidth) / 2;
                     }
-
                 }
             }
 
@@ -212,10 +206,10 @@
                     paddleX = 0;
                 }
             }
-
+            requestAnimationFrame(draw);
         }
 
-        var interval = setInterval(draw, 10);
+        draw();
     </script>
 
 </body>
